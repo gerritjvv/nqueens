@@ -1,8 +1,6 @@
-package combinations.queens;
+package org.combinations.queens;
 
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import math.MathUtils;
-import org.apache.commons.math3.fraction.Fraction;
+import org.combinations.gradients.Solver;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -29,9 +27,22 @@ import java.util.function.Predicate;
  */
 public class Predicates {
 
+    /**
+     * Returns false if any 3 points are on the same line.<br/>
+     * Note: any 3 points are on the same line if their gradients are the same.
+     */
+    public static class No3PointsOnStraightLine implements Predicate<int[]> {
+        public static final No3PointsOnStraightLine INSTANCE = new No3PointsOnStraightLine();
+
+        @Override
+        public boolean test(int[] queens) {
+            return !Solver.has3Points(queens);
+        }
+    }
+
     @SafeVarargs
     public static Consumer<int[]> consumer(Consumer<int[]> consumer, Predicate<int[]>... predicates) {
-        if (predicates == null || predicates.length == 0) {
+        if (predicates == null || predicates.length == 0 || predicates[0] == null) {
             return consumer;
         }
 
@@ -56,27 +67,4 @@ public class Predicates {
     }
 
 
-    /**
-     * Returns false if any 3 points are on the same line.<br/>
-     * Note: any 3 points are on the same line if their gradients are the same.
-     */
-    public static class No3PointsOnStraightLine implements Predicate<int[]> {
-        public static final No3PointsOnStraightLine INSTANCE = new No3PointsOnStraightLine();
-
-        private static final int POINTS_ON_LINE = 2;
-
-        @Override
-        public boolean test(int[] queens) {
-            // get the frequencies for each unique gradient
-            Object2IntMap<Fraction> gradFreq = MathUtils.gradientFrequencies(queens);
-
-            for (int freq : gradFreq.values()) {
-                if (freq > POINTS_ON_LINE) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
 }

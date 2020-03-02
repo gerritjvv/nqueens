@@ -1,10 +1,13 @@
-package combinations.queens;
+package org.combinations.queens;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class No3PointsOnStraightLineTests {
+
+
+
 
     /**
      * Test the case where we have 3 or more

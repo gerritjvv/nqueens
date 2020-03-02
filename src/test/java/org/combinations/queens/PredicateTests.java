@@ -1,4 +1,4 @@
-package combinations.queens;
+package org.combinations.queens;
 
 import org.junit.Test;
 

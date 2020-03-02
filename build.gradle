@@ -10,12 +10,18 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'jacoco'
+    id 'com.github.johnrengelman.shadow' version "5.2.0"
 }
-
 
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.combinations.Main'
+    }
+}
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -25,12 +31,12 @@ repositories {
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
-    implementation 'com.github.krukow:clj-ds:0.0.4'
-    implementation 'it.unimi.dsi:fastutil:8.3.1'
-    implementation 'org.apache.commons:commons-math3:3.6.1'
+    api 'com.github.krukow:clj-ds:0.0.4'
+    api 'it.unimi.dsi:fastutil:8.3.1'
+    api 'org.apache.commons:commons-math3:3.6.1'
 
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    // implementation 'com.google.guava:guava:28.0-jre'
+    implementation 'info.picocli:picocli:4.2.0'
+    annotationProcessor 'info.picocli:picocli-codegen:4.2.0'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'

@@ -1,4 +1,4 @@
-package combinations.queens;
+package org.combinations.queens;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;

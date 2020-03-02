@@ -1,4 +1,4 @@
-package combinations.queens;
+package org.combinations.queens;
 
 import org.junit.Test;
 
@@ -32,12 +32,12 @@ public class SolverTests {
             new SolveTestData(3, 0),
             new SolveTestData(4, 2),
             new SolveTestData(5, 6),
-            new SolveTestData(6, 0),
-            new SolveTestData(7, 12),
-            new SolveTestData(8, 66),
-            new SolveTestData(9, 194),
-            new SolveTestData(10, 300),
-            new SolveTestData(11, 1250),
+            new SolveTestData(6, 2),
+            new SolveTestData(7, 10),
+            new SolveTestData(8, 54),
+            new SolveTestData(9, 170),
+            new SolveTestData(10, 384),
+            new SolveTestData(11, 1476),
     };
 
     /**
