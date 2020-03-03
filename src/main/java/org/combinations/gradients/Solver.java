@@ -52,6 +52,16 @@ public class Solver {
         double d1 = coords[r + 1] - coords[r];
         double d2 = coords[r + 2] - coords[r + 1];
 
+        // These cases are when we have Q on the same line or column.
+        // This is something that will never happen, because of the nqueens Solver's constraints.
+        // if (d1 == 0 && d2 == 0) {
+        //    return n1 == n2;
+        // } else if (n1 == 0) {
+        //  if (n2 == 0)
+        //    return d1 == d2
+        //  return false;
+        // }
+
         return Math.abs(n1 / d1 - n2 / d2) < 1e-99;
     }
 }
