@@ -5,7 +5,7 @@ This is my take on making a simple NQueens Solver.
 
 ## Requirements
 
-  * (Gradle)[https://gradle.org]
+  * [Gradle](https://gradle.org)
 
 ## Getting started
 
@@ -70,7 +70,7 @@ Some more enhancements can be done here e.g keep track of the diagonals on the a
 
 ### Other options
 
-  * (Google OR-Tools)[https://developers.google.com/optimization/cp/queens]
+  * [Google OR-Tools](https://developers.google.com/optimization/cp/queens)
   * https://www.lth.se/jacop/
   * https://www.optaplanner.org/
 
