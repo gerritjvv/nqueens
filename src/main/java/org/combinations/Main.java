@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- * Run the solver as an app
+ * Run the solver as a cli application.
  */
 @CommandLine.Command
 public class Main implements Runnable {
@@ -40,9 +40,9 @@ public class Main implements Runnable {
         Consumer<int[]> consumer;
 
         if(printBoards) {
-            consumer = Consumers.Printer.INSTANCE.andThen(Consumers.Counter.INSTANCE);
+            consumer = Consumers.Printer.INSTANCE.andThen(Consumers.Counter.create());
         } else{
-            consumer = Consumers.Counter.INSTANCE;
+            consumer = Consumers.Counter.create();
         }
 
         Solver.solve(n, consumer, p);

@@ -4,14 +4,28 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
+/**
+ * Here we group some consumer helper functions and pre-built consumers for our queens {@link Solver}.
+ * <p/>
+ * <p>
+ * Print out each solutions: <br/>
+ * <pre>
+ *     Solver.solve( Consumers.Printer.INSTANCE );
+ * </pre>
+ * <p/>
+ * Counter solutions:<br/>
+ * <pre>
+ *     Consumers.Counter counter = Consumers.Counter.create();
+ *     Solver.solve(counter);
+ *
+ *     //get the counter value
+ *     System.out.println("Count: " + counter.getCount());
+ *
+ *     // or flush, which will print the count to stdout;
+ *     counter.accept(null);
+ * </pre>
+ */
 public class Consumers {
-
-    public static <T> Consumer<T> compose(Consumer<T>... consumers) {
-        if (consumers == null || consumers.length == 0)
-            return null;
-
-        return Arrays.stream(consumers).reduce((c1, c2) -> c1.andThen(c2)).orElse(consumers[0]);
-    }
 
     public static class Printer implements Consumer<int[]> {
         public static final Printer INSTANCE = new Printer();
@@ -21,12 +35,17 @@ public class Consumers {
             if (queens != null) {
                 synchronized (this) {
 
+                    // print each row
                     for (int row = 0; row < queens.length; row++) {
-                        for (int col = 0; col < queens.length; col++) {
+                        // print columns
+                        for (int col = 0; col < queens.length; col++)
                             System.out.print(queens[row] == col ? "Q " : "- ");
-                        }
+
+                        // end of row
                         System.out.println();
                     }
+
+                    // end or solution
                     System.out.println();
 
                 }
@@ -35,9 +54,12 @@ public class Consumers {
     }
 
     public static class Counter implements Consumer<int[]> {
-        public static final Counter INSTANCE = new Counter();
 
         private final AtomicInteger counter = new AtomicInteger();
+
+        public static Counter create() {
+            return new Counter();
+        }
 
         @Override
         public void accept(int[] queens) {
@@ -46,6 +68,10 @@ public class Consumers {
             } else {
                 counter.getAndIncrement();
             }
+        }
+
+        public int getCount() {
+            return counter.get();
         }
     }
 
