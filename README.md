@@ -10,11 +10,12 @@ This is my take on making a simple NQueens Solver.
 ## Getting started
 
 The solution is divided into:  
-  * queens Solver
-  * gradients Solver
-  * Consumers.Printer, Consumers.Counter
-  * Predicates.No3PointsOnStraightLine
-
+  * [queens Solver](https://github.com/gerritjvv/nqueens/blob/master/src/main/java/org/combinations/queens/Solver.java)
+  * [gradients Solver](https://github.com/gerritjvv/nqueens/blob/master/src/main/java/org/combinations/gradients/Solver.java)
+  * [Consumers.Printer](https://github.com/gerritjvv/nqueens/blob/master/src/main/java/org/combinations/queens/Consumers.java#L30), [Consumers.Counter](https://github.com/gerritjvv/nqueens/blob/master/src/main/java/org/combinations/queens/Consumers.java#L56)
+  * [Predicates.No3PointsOnStraightLine](https://github.com/gerritjvv/nqueens/blob/master/src/main/java/org/combinations/queens/Predicates.java#L34)
+  * [CLI](https://github.com/gerritjvv/nqueens/blob/master/src/main/java/org/combinations/Main.java)
+  
 ```java
 // find number of solutions
 int solutions = Solver.countSolutions(4);
