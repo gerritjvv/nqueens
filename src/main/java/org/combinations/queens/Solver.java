@@ -1,11 +1,28 @@
-package combinations.queens;
+package org.combinations.queens;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
  * Solver for the nqueens problem see: https://en.wikipedia.org/wiki/Eight_queens_puzzle
+ * <p>
+ * Usage: <br/>
+ * <pre>
+ *      int n = 4;
+ *      AtomicInteger counter = new AtomicInteger();
+ *      Consumer<int[]> counterConsumer = arr -> counter.incrementAndGet();
+ *
+ *      Solver.solve(n, counterConsumer);
+ *
+ *      System.out.println("Solutions: " + counter);
+ * </pre>
+ * <p/>
+ * or
+ * <p/>
+ * <pre>
+ *     int n = 4;
+ *     int solutions = Solver.countSolutions(n);
+ * </pre>
  */
 public class Solver {
 
@@ -18,13 +35,11 @@ public class Solver {
      */
     @SafeVarargs
     public static int countSolutions(int n, Predicate<int[]>... predicates) {
-        AtomicInteger counter = new AtomicInteger();
+        Consumers.Counter counter = Consumers.Counter.create();
 
-        Consumer<int[]> counterConsumer = arr -> counter.incrementAndGet();
+        Solver.solve(n, counter, predicates);
 
-        Solver.solve(n, counterConsumer, predicates);
-
-        return counter.get();
+        return counter.getCount();
     }
 
     /**
